@@ -135,6 +135,7 @@ document.getElementById("start-yes").addEventListener("click", () => {
   gameLoop();
 });
 
+
 // Funzione per gestire la collisione della bomba
 function handleSlice(x1, y1, x2, y2) {
   slices.push({ x1, y1, x2, y2 });
@@ -198,9 +199,9 @@ canvas.addEventListener("mouseup", () => {
   lastY = null;
 });
 
-// Gestione del touch su dispositivi mobili
 canvas.addEventListener("touchstart", (e) => {
   e.preventDefault(); // Impedisce lo scroll della pagina
+  e.stopPropagation(); // Fermiamo l'eventuale propagazione
 
   const rect = canvas.getBoundingClientRect();
   const touch = e.touches[0]; // Prendi il primo tocco
@@ -213,6 +214,7 @@ canvas.addEventListener("touchstart", (e) => {
 
 canvas.addEventListener("touchmove", (e) => {
   e.preventDefault(); // Impedisce lo scroll della pagina
+  e.stopPropagation(); // Fermiamo l'eventuale propagazione
 
   const rect = canvas.getBoundingClientRect();
   const touch = e.touches[0]; // Prendi il primo tocco
@@ -231,6 +233,7 @@ canvas.addEventListener("touchend", () => {
   lastX = null;
   lastY = null;
 });
+
 
 // Collisione riga/cerchio
 function lineIntersectsCircle(x1, y1, x2, y2, cx, cy, r) {
