@@ -38,6 +38,7 @@ body {
   background-color: #45a049;
 }
 
+/*
 canvas {
   border: 2px solid black;
   width: 100%;
@@ -46,6 +47,17 @@ canvas {
   aspect-ratio: 6 / 7;
   display: block;
 }
+  */
+
+canvas {
+  width: 100%;
+  height: auto;
+  max-width: 600px;
+  aspect-ratio: 6 / 7;
+  display: block;
+  touch-action: none; /* Impedisce al browser di fare azioni predefinite durante il tocco (come lo scroll) */
+}
+
 
 /* Modale per la bomba */
 #bombModal {

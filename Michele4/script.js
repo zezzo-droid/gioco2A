@@ -35,7 +35,6 @@ function showGameOverModal() {
   gameOver = true;
 }
 
-
 // Aggiorna la funzione update() per controllare le vite
 function update() {
   if (gameOver) return;
@@ -80,8 +79,7 @@ document.getElementById("restartButton").addEventListener("click", () => {
   document.getElementById("start-menu").style.display = "block";
 });
 
-
-
+// Funzione di disegno
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "#fdf6e3";
@@ -179,9 +177,9 @@ document.getElementById("restartButton").addEventListener("click", () => {
   document.getElementById("start-menu").style.display = "block"; // Mostra il menu iniziale
 });
 
-
 let lastX = null, lastY = null;
 
+// Gestione del movimento del mouse
 canvas.addEventListener("mousemove", (e) => {
   const rect = canvas.getBoundingClientRect();
   const x = e.clientX - rect.left;
@@ -200,10 +198,24 @@ canvas.addEventListener("mouseup", () => {
   lastY = null;
 });
 
-// Touch support
-canvas.addEventListener("touchmove", (e) => {
+// Gestione del touch su dispositivi mobili
+canvas.addEventListener("touchstart", (e) => {
+  e.preventDefault(); // Impedisce lo scroll della pagina
+
   const rect = canvas.getBoundingClientRect();
-  const touch = e.touches[0];
+  const touch = e.touches[0]; // Prendi il primo tocco
+  const x = touch.clientX - rect.left;
+  const y = touch.clientY - rect.top;
+
+  lastX = x;
+  lastY = y;
+});
+
+canvas.addEventListener("touchmove", (e) => {
+  e.preventDefault(); // Impedisce lo scroll della pagina
+
+  const rect = canvas.getBoundingClientRect();
+  const touch = e.touches[0]; // Prendi il primo tocco
   const x = touch.clientX - rect.left;
   const y = touch.clientY - rect.top;
 
@@ -236,4 +248,6 @@ function lineIntersectsCircle(x1, y1, x2, y2, cx, cy, r) {
   return dx * dx + dy * dy <= r * r;
 }
 
-gameLoop(); // Avvio del loop del gioco
+// Avvio del loop del gioco
+gameLoop(); 
+
